@@ -1,0 +1,37 @@
+
+	
+//接收form傳來的資料
+  var strUrl = location.search;
+  var getPara, ParaVal;
+  var aryPara = [];
+
+  if (strUrl.indexOf("?") != -1) {
+    var getSearch = strUrl.split("?");
+    getPara = getSearch[1].split("&");
+    for (i = 0; i < getPara.length; i++) {
+      ParaVal = getPara[i].split("=");
+      aryPara.push(ParaVal[0]);
+	  aryPara.push(ParaVal[1]);
+    }
+	
+    itemnum=parseInt(aryPara[1]); //接收第1個值
+	answertime=parseInt(aryPara[3]); //接收第2個值
+	speed=parseFloat(aryPara[5]); //接收第3個值
+	
+	//alert(speed); //觀察一下
+  }
+  
+//播mp3
+<audio id="saywin">
+    <source src="sound/win.mp3" type="audio/mpeg">
+</audio>  
+
+document.getElementById("saywin").play(); //在javascript中
+$("#myAudioElement")[0].play(); //在jquery中，而且「0」是必要的
+說明如下
+	It doesn't work with $("#myAudioElement").play() like you would expect. 
+	The official reason is that incorporating it into jQuery would add a play() method to every single element, 
+	which would cause unnecessary overhead. 
+	So instead you have to refer to it by its position in the array of DOM elements that you're retrieving with $("#myAudioElement"), aka 0.
+	
+#jQuery 中加入return false;
